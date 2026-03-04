@@ -29,6 +29,13 @@ export const PROJECTS = [
     link: 'https://lovemf.netlify.app',
     emoji: '🏛️',
   },
+  {
+    title: 'Encrypse Digital Agency',
+    desc: 'Digital platform for a trusted agency dedicated to delivering expert digital services.',
+    tags: ['HTML5', 'CSS', 'JavaScript', 'WordPress'],
+    link: 'https://encrypse.com',
+    emoji: '🏛️',
+  },
    {
     title: 'Encrypse Home Health Services',
     desc: 'Digital platform for a trusted home care agency dedicated to delivering expert in-home services.',
