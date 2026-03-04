@@ -22,6 +22,20 @@ export const PROJECTS = [
     link: 'https://publicsecgov.org/about-cpsg-2',
     emoji: '🏛️',
   },
+  {
+    title: 'Love Dating and Marriage',
+    desc: 'Digital platform for an organization dedicated to fostering healthy relationships, love, and marriage through expert advice and resources.',
+    tags: ['HTML5', 'CSS', 'JavaScript'],
+    link: 'https://lovemf.netlify.app',
+    emoji: '🏛️',
+  },
+   {
+    title: 'Encrypse Home Health Services',
+    desc: 'Digital platform for a trusted home care agency dedicated to delivering expert in-home services.',
+    tags: ['HTML5', 'CSS', 'JavaScript', 'WordPress'],
+    link: 'https://health.encrypse.com',
+    emoji: '🏛️',
+  },
 ];
 
 export const SKILLS = {
