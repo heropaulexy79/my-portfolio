@@ -43,6 +43,13 @@ export const PROJECTS = [
     link: 'https://health.encrypse.com',
     emoji: '🏛️',
   },
+  {
+    title: 'Wisdom Mix Academy',
+    desc: 'Digital platform for a trusted home care agency dedicated to delivering expert in-home services.',
+    tags: ['Tailwind CSS', 'NextJS', 'TypeScript'],
+    link: 'https://wisdommixacademy.vercel.app/',
+    emoji: '🏛️',
+  },
 ];
 
 export const SKILLS = {
