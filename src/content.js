@@ -45,9 +45,16 @@ export const PROJECTS = [
   },
   {
     title: 'Wisdom Mix Academy',
-    desc: 'Digital platform for a trusted home care agency dedicated to delivering expert in-home services.',
+    desc: 'Digital platform for an academy designed to teach leadership and shift mindsets',
     tags: ['Tailwind CSS', 'NextJS', 'TypeScript'],
     link: 'https://wisdommixacademy.vercel.app/',
+    emoji: '🏛️',
+  },
+  {
+    title: 'Nuhra X Website',
+    desc: 'Digital platform for a web agency specialized in building specialized solutions',
+    tags: ['Tailwind CSS', 'NextJS', 'TypeScript'],
+    link: 'nuhrax.vercel.app',
     emoji: '🏛️',
   },
 ];
