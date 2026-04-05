@@ -19,7 +19,7 @@ export const PROJECTS = [
     title: 'Centre for Public Sector Governance',
     desc: 'Digital platform for a SCGN initiative dedicated to governance, leadership excellence, and public sector transformation.',
     tags: ['WordPress', 'PHP', 'CSS'],
-    link: 'https://publicsecgov.org/about-cpsg-2',
+    link: 'https://publicsecgov.org/',
     emoji: '🏛️',
   },
   {
