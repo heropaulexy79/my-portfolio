@@ -54,7 +54,7 @@ export const PROJECTS = [
     title: 'Nuhra X Website',
     desc: 'Digital platform for a web agency specialized in building specialized solutions',
     tags: ['Tailwind CSS', 'NextJS', 'TypeScript'],
-    link: 'nuhrax.vercel.app',
+    link: 'https://nuhrax.vercel.app/',
     emoji: '🏛️',
   },
 ];
