@@ -16,7 +16,7 @@ export const EXPERIENCE = [
     period: "2023 - 2025",
     description: "Built high-performance landing pages and corporate websites. Improved page load times and implemented dynamic UI components.",
     skills: ["HTML/CSS", "JavaScript", "WordPress", "SEO"]
-  }
+  },
   {
     id: 3,
     role: "Web Developer",
