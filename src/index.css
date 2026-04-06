@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-[#05050f] text-white font-sans overflow-x-hidden;
+    /* Custom cursor hiding is handled by React component later, but let's keep it if we want custom cursor */
+    cursor: none;
+  }
+  
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-[#05050f];
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-purple-500 rounded-sm;
+  }
+  ::selection {
+    @apply bg-purple-500/30 text-white;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
+  }
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl;
+  }
+  .text-glow {
+    text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+  }
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+}

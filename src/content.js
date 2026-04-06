@@ -1,4 +1,31 @@
-export const NAV_LINKS = ['Home', 'Projects', 'Skills', 'Contact'];
+export const NAV_LINKS = ['Home', 'Experience', 'Projects', 'Skills', 'Contact'];
+
+export const EXPERIENCE = [
+  {
+    id: 1,
+    role: "Freelance Web Developer",
+    company: "Self-Employed",
+    period: "2025 - Present",
+    description: "Developing robust and scalable web applications for diverse clients, specializing in WordPress customization, PHP development, and modern JavaScript frameworks.",
+    skills: ["PHP", "WordPress", "JavaScript", "React", "Python", "Next JS"]
+  },
+  {
+    id: 2,
+    role: "Web Developer",
+    company: "Future Software Technologies",
+    period: "2023 - 2025",
+    description: "Built high-performance landing pages and corporate websites. Improved page load times and implemented dynamic UI components.",
+    skills: ["HTML/CSS", "JavaScript", "WordPress", "SEO"]
+  }
+  {
+    id: 3,
+    role: "Web Developer",
+    company: "Thorium Logic",
+    period: "2022 - 2024",
+    description: "Built high-performance landing pages and corporate websites. Improved page load times and implemented dynamic UI components.",
+    skills: ["HTML/CSS", "JavaScript", "WordPress", "SEO"]
+  }
+];
 
 export const PROJECTS = [
   {

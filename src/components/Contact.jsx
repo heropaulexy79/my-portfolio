@@ -1,21 +1,24 @@
 import { useState } from 'react';
 import AnimSection from './AnimSection';
+import { Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 
-const FORMSPREE_URL = 'https://formspree.io/f/xpqyaakw'; // 👈 replace this
+const FORMSPREE_URL = 'https://formspree.io/f/xpqyaakw';
 
-const inp = {
-  width: '100%',
-  background: 'rgba(255,255,255,0.04)',
-  border: '1px solid rgba(255,255,255,0.1)',
-  borderRadius: 12,
-  padding: '14px 16px',
-  color: 'white',
-  fontSize: 15,
-  fontFamily: 'inherit',
-  outline: 'none',
-  transition: 'border-color 0.2s',
-  boxSizing: 'border-box',
-};
+function SectionHeader({ label, title, highlight, subtitle }) {
+  return (
+    <div className="text-center mb-16">
+      <div className="text-xs tracking-[0.2em] text-purple-500 uppercase mb-3 font-semibold">{label}</div>
+      <h2 className="text-[clamp(32px,5vw,52px)] font-extrabold m-0 mb-4 tracking-tight">
+        {title}{' '}
+        <span className="bg-gradient-to-br from-indigo-500 to-purple-500 bg-clip-text text-transparent">{highlight}</span>
+      </h2>
+      <p className="text-white/45 text-base leading-relaxed max-w-md mx-auto m-0">
+        {subtitle}
+      </p>
+      <div className="w-16 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto mt-6 rounded-full" />
+    </div>
+  );
+}
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
@@ -30,7 +33,7 @@ export default function Contact() {
       const res = await fetch(FORMSPREE_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ name: form.name, email: form.email, message: form.message }),
+        body: JSON.stringify(form),
       });
       if (res.ok) {
         setStatus('success');
@@ -43,89 +46,87 @@ export default function Contact() {
     }
   };
 
+  const inputClass = "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white text-[15px] outline-none transition-all duration-300 focus:border-purple-500 focus:bg-white/10 placeholder:text-white/20";
+  const labelClass = "text-[11px] font-bold text-white/40 block mb-2 tracking-wider";
+
   return (
-    <section id="contact" style={{ padding: '120px 40px' }}>
-      <div style={{ maxWidth: 640, margin: '0 auto' }}>
+    <section id="contact" className="py-32 px-10 relative">
+      <div className="max-w-2xl mx-auto relative z-10">
         <AnimSection>
-          <div style={{ textAlign: 'center', marginBottom: 64 }}>
-            <div style={{ fontSize: 12, letterSpacing: 3, color: '#a855f7', textTransform: 'uppercase', marginBottom: 14, fontWeight: 600 }}>Contact</div>
-            <h2 style={{ fontSize: 'clamp(32px,5vw,52px)', fontWeight: 800, margin: '0 0 16px', letterSpacing: -1 }}>
-              {"Let's "}
-              <span style={{ background: 'linear-gradient(135deg,#6366f1,#a855f7)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Connect</span>
-            </h2>
-            <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: 16, lineHeight: 1.7, margin: 0 }}>
-              Have a project in mind? I would love to hear about it.
-            </p>
-            <div style={{ width: 60, height: 3, background: 'linear-gradient(90deg,#6366f1,#a855f7)', margin: '20px auto 0', borderRadius: 2 }} />
-          </div>
+          <SectionHeader 
+            label="Contact" 
+            title="Let's" 
+            highlight="Connect" 
+            subtitle="Have a project in mind? I would love to hear about it."
+          />
         </AnimSection>
 
         <AnimSection delay={0.1}>
-          <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 24, padding: 40 }}>
+          <div className="bg-white/[0.02] border border-white/[0.07] rounded-3xl p-8 md:p-10 backdrop-blur-sm relative overflow-hidden">
+            
+            {/* Background Glow */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 rounded-full blur-[80px] pointer-events-none" />
 
             {/* Success state */}
             {status === 'success' && (
-              <div style={{ textAlign: 'center', padding: '40px 0' }}>
-                <div style={{ fontSize: 56, marginBottom: 16 }}>✅</div>
-                <h3 style={{ color: '#a855f7', margin: '0 0 8px', fontSize: 22 }}>Message Sent!</h3>
-                <p style={{ color: 'rgba(255,255,255,0.5)', margin: '0 0 24px' }}>
+              <div className="text-center py-12 animate-in fade-in zoom-in duration-500">
+                <CheckCircle className="w-16 h-16 text-emerald-400 mx-auto mb-4" />
+                <h3 className="text-2xl font-bold text-white mb-2">Message Sent!</h3>
+                <p className="text-white/50 mb-8">
                   Thanks for reaching out. I will get back to you soon.
                 </p>
                 <button
+                  data-hover
                   onClick={() => setStatus('idle')}
-                  style={{ background: 'none', border: '1px solid rgba(168,85,247,0.4)', borderRadius: 100, padding: '10px 24px', color: '#a855f7', cursor: 'pointer', fontFamily: 'inherit', fontSize: 14, fontWeight: 600 }}
+                  className="px-6 py-2.5 rounded-full border border-purple-500/40 text-purple-400 font-semibold text-sm hover:bg-purple-500/10 transition-colors duration-300"
                 >
                   Send another message
                 </button>
               </div>
             )}
 
-            {/* Error state */}
-            {status === 'error' && (
-              <div style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.3)', borderRadius: 12, padding: '14px 18px', marginBottom: 20, color: '#fca5a5', fontSize: 14 }}>
-                Something went wrong. Please try again or email me directly.
-              </div>
-            )}
-
             {/* Form */}
             {status !== 'success' && (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+              <div className="flex flex-col gap-6 animate-in fade-in duration-300">
+                
+                {/* Error state */}
+                {status === 'error' && (
+                  <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-4 flex items-center gap-3 text-red-400 text-sm animate-in shake duration-300">
+                    <AlertCircle size={20} />
+                    Something went wrong. Please try again or email me directly.
+                  </div>
+                )}
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label style={{ fontSize: 12, fontWeight: 600, color: 'rgba(255,255,255,0.4)', display: 'block', marginBottom: 8, letterSpacing: 0.5 }}>NAME</label>
+                    <label className={labelClass}>NAME</label>
                     <input
                       value={form.name}
                       onChange={update('name')}
-                      placeholder="Your name"
-                      style={inp}
-                      onFocus={(e) => (e.target.style.borderColor = '#a855f7')}
-                      onBlur={(e) => (e.target.style.borderColor = 'rgba(255,255,255,0.1)')}
+                      placeholder="John Doe"
+                      className={inputClass}
                     />
                   </div>
                   <div>
-                    <label style={{ fontSize: 12, fontWeight: 600, color: 'rgba(255,255,255,0.4)', display: 'block', marginBottom: 8, letterSpacing: 0.5 }}>EMAIL</label>
+                    <label className={labelClass}>EMAIL</label>
                     <input
                       value={form.email}
                       onChange={update('email')}
-                      placeholder="your@email.com"
+                      placeholder="john@example.com"
                       type="email"
-                      style={inp}
-                      onFocus={(e) => (e.target.style.borderColor = '#a855f7')}
-                      onBlur={(e) => (e.target.style.borderColor = 'rgba(255,255,255,0.1)')}
+                      className={inputClass}
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label style={{ fontSize: 12, fontWeight: 600, color: 'rgba(255,255,255,0.4)', display: 'block', marginBottom: 8, letterSpacing: 0.5 }}>MESSAGE</label>
+                  <label className={labelClass}>MESSAGE</label>
                   <textarea
                     value={form.message}
                     onChange={update('message')}
                     placeholder="Tell me about your project..."
                     rows={5}
-                    style={{ ...inp, resize: 'vertical' }}
-                    onFocus={(e) => (e.target.style.borderColor = '#a855f7')}
-                    onBlur={(e) => (e.target.style.borderColor = 'rgba(255,255,255,0.1)')}
+                    className={`${inputClass} resize-y min-h-[120px]`}
                   />
                 </div>
 
@@ -133,26 +134,21 @@ export default function Contact() {
                   data-hover
                   onClick={submit}
                   disabled={status === 'sending'}
-                  style={{
-                    padding: 15, borderRadius: 12, border: 'none', cursor: status === 'sending' ? 'not-allowed' : 'pointer',
-                    fontWeight: 700, fontSize: 15,
-                    background: status === 'sending' ? 'rgba(168,85,247,0.4)' : 'linear-gradient(135deg,#6366f1,#a855f7)',
-                    color: 'white',
-                    boxShadow: '0 0 30px rgba(168,85,247,0.3)',
-                    transition: 'all 0.3s',
-                    fontFamily: 'inherit',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-                  }}
-                  onMouseEnter={(e) => { if (status !== 'sending') { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 0 50px rgba(168,85,247,0.5)'; } }}
-                  onMouseLeave={(e) => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 0 30px rgba(168,85,247,0.3)'; }}
+                  className={`w-full py-4 rounded-xl font-bold text-[15px] flex items-center justify-center gap-2 transition-all duration-300 ${
+                    status === 'sending'
+                      ? 'bg-purple-500/40 cursor-not-allowed text-white/70'
+                      : 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(168,85,247,0.4)]'
+                  }`}
                 >
                   {status === 'sending' ? (
                     <>
-                      <div style={{ width: 16, height: 16, border: '2px solid rgba(255,255,255,0.3)', borderTop: '2px solid white', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
+                      <Loader2 className="animate-spin" size={20} />
                       Sending...
                     </>
                   ) : (
-                    'Send Message ✦'
+                    <>
+                      Send Message <Send size={18} />
+                    </>
                   )}
                 </button>
               </div>
@@ -160,7 +156,6 @@ export default function Contact() {
           </div>
         </AnimSection>
       </div>
-      <style>{`@keyframes spin { to { transform: rotate(360deg) } }`}</style>
     </section>
   );
 }

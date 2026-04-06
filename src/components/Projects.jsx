@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { PROJECTS } from '../content';
 import AnimSection from './AnimSection';
+import { ExternalLink, Eye, X } from 'lucide-react';
 
 function PreviewModal({ project, onClose }) {
   const [loaded, setLoaded] = useState(false);
@@ -9,54 +10,27 @@ function PreviewModal({ project, onClose }) {
   return (
     <div
       onClick={onClose}
-      style={{
-        position: 'fixed', inset: 0, zIndex: 1000,
-        background: 'rgba(0,0,0,0.85)',
-        backdropFilter: 'blur(12px)',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        padding: '20px',
-        animation: 'fadeIn 0.2s ease',
-      }}
+      className="fixed inset-0 z-[1000] bg-black/85 backdrop-blur-md flex items-center justify-center p-5 animate-in fade-in duration-200"
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        style={{
-          width: '100%', maxWidth: 1100,
-          height: '80vh',
-          background: '#0e0e1a',
-          borderRadius: 20,
-          border: '1px solid rgba(168,85,247,0.3)',
-          boxShadow: '0 40px 120px rgba(168,85,247,0.2)',
-          display: 'flex', flexDirection: 'column',
-          overflow: 'hidden',
-          animation: 'slideUp 0.3s ease',
-        }}
+        className="w-full max-w-5xl h-[80vh] bg-[#0e0e1a] rounded-2xl border border-purple-500/30 shadow-[0_40px_120px_rgba(168,85,247,0.2)] flex flex-col overflow-hidden animate-in slide-in-from-bottom-8 duration-300"
       >
         {/* Browser chrome bar */}
-        <div style={{
-          display: 'flex', alignItems: 'center', gap: 12,
-          padding: '12px 20px',
-          background: 'rgba(255,255,255,0.03)',
-          borderBottom: '1px solid rgba(255,255,255,0.07)',
-          flexShrink: 0,
-        }}>
+        <div className="flex items-center gap-3 px-5 py-3 bg-white/5 border-b border-white/5 shrink-0">
           {/* Traffic lights */}
-          <div style={{ display: 'flex', gap: 6 }}>
-            <button onClick={onClose} style={{ width: 12, height: 12, borderRadius: '50%', background: '#ff5f57', border: 'none', cursor: 'pointer' }} title="Close" />
-            <div style={{ width: 12, height: 12, borderRadius: '50%', background: '#febc2e' }} />
-            <div style={{ width: 12, height: 12, borderRadius: '50%', background: '#28c840' }} />
+          <div className="flex gap-1.5">
+            <button onClick={onClose} className="w-3 h-3 rounded-full bg-[#ff5f57] hover:brightness-110 border-none cursor-pointer flex items-center justify-center group" title="Close">
+              <X size={8} className="opacity-0 group-hover:opacity-100 text-black/50" />
+            </button>
+            <div className="w-3 h-3 rounded-full bg-[#febc2e]" />
+            <div className="w-3 h-3 rounded-full bg-[#28c840]" />
           </div>
 
           {/* URL bar */}
-          <div style={{
-            flex: 1, background: 'rgba(255,255,255,0.06)',
-            borderRadius: 8, padding: '5px 14px',
-            fontSize: 12, color: 'rgba(255,255,255,0.5)',
-            display: 'flex', alignItems: 'center', gap: 6,
-            border: '1px solid rgba(255,255,255,0.08)',
-          }}>
-            <span style={{ color: '#a855f7' }}>🔒</span>
-            {project.link}
+          <div className="flex-1 bg-white/5 rounded-md py-1.5 px-3.5 text-xs text-white/50 flex items-center gap-2 border border-white/10 font-mono overflow-hidden whitespace-nowrap">
+            <span className="text-purple-400">🔒</span>
+            <span className="truncate">{project.link}</span>
           </div>
 
           {/* Open in new tab */}
@@ -64,52 +38,30 @@ function PreviewModal({ project, onClose }) {
             href={project.link}
             target="_blank"
             rel="noreferrer"
-            style={{
-              color: 'rgba(255,255,255,0.4)', fontSize: 18,
-              textDecoration: 'none', lineHeight: 1,
-              transition: 'color 0.2s',
-            }}
+            className="text-white/40 hover:text-purple-500 transition-colors duration-200"
             title="Open in new tab"
-            onMouseEnter={(e) => (e.currentTarget.style.color = '#a855f7')}
-            onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.4)')}
           >
-            ↗
+            <ExternalLink size={18} />
           </a>
         </div>
 
         {/* iframe area */}
-        <div style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
+        <div className="flex-1 relative overflow-hidden bg-black/20">
           {/* Loading spinner */}
           {!loaded && !blocked && (
-            <div style={{
-              position: 'absolute', inset: 0,
-              display: 'flex', flexDirection: 'column',
-              alignItems: 'center', justifyContent: 'center',
-              gap: 16, color: 'rgba(255,255,255,0.4)',
-            }}>
-              <div style={{
-                width: 40, height: 40,
-                border: '3px solid rgba(168,85,247,0.2)',
-                borderTop: '3px solid #a855f7',
-                borderRadius: '50%',
-                animation: 'spin 0.8s linear infinite',
-              }} />
-              <span style={{ fontSize: 14 }}>Loading preview...</span>
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 text-white/40">
+              <div className="w-10 h-10 border-4 border-purple-500/20 border-t-purple-500 rounded-full animate-spin" />
+              <span className="text-sm font-medium tracking-wide animate-pulse">Loading preview...</span>
             </div>
           )}
 
           {/* Blocked message */}
           {blocked && (
-            <div style={{
-              position: 'absolute', inset: 0,
-              display: 'flex', flexDirection: 'column',
-              alignItems: 'center', justifyContent: 'center',
-              gap: 20, padding: 40, textAlign: 'center',
-            }}>
-              <div style={{ fontSize: 56 }}>🚫</div>
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-5 p-10 text-center bg-[#0e0e1a]">
+              <div className="text-6xl mb-2">🚫</div>
               <div>
-                <h3 style={{ fontSize: 20, fontWeight: 700, marginBottom: 8 }}>Preview Blocked</h3>
-                <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: 15, lineHeight: 1.7, maxWidth: 400 }}>
+                <h3 className="text-xl font-bold mb-2">Preview Blocked</h3>
+                <p className="text-white/45 text-[15px] leading-relaxed max-w-[400px]">
                   This site has restricted embedding for security reasons.<br />
                   You can still visit it directly.
                 </p>
@@ -118,15 +70,9 @@ function PreviewModal({ project, onClose }) {
                 href={project.link}
                 target="_blank"
                 rel="noreferrer"
-                style={{
-                  padding: '12px 28px', borderRadius: 100,
-                  background: 'linear-gradient(135deg,#6366f1,#a855f7)',
-                  color: 'white', textDecoration: 'none',
-                  fontWeight: 600, fontSize: 14,
-                  boxShadow: '0 0 30px rgba(168,85,247,0.4)',
-                }}
+                className="mt-2 px-7 py-3 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 text-white font-semibold text-sm shadow-[0_0_30px_rgba(168,85,247,0.4)] hover:shadow-[0_0_50px_rgba(168,85,247,0.6)] transition-all duration-300"
               >
-                Open Site →
+                Open Site &rarr;
               </a>
             </div>
           )}
@@ -134,12 +80,7 @@ function PreviewModal({ project, onClose }) {
           <iframe
             src={project.link}
             title={project.title}
-            style={{
-              width: '100%', height: '100%',
-              border: 'none',
-              opacity: loaded ? 1 : 0,
-              transition: 'opacity 0.3s ease',
-            }}
+            className={`w-full h-full border-none transition-opacity duration-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}
             onLoad={() => setLoaded(true)}
             onError={() => setBlocked(true)}
             sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
@@ -152,91 +93,65 @@ function PreviewModal({ project, onClose }) {
 
 function SectionHeader({ label, title, highlight }) {
   return (
-    <div style={{ textAlign: 'center', marginBottom: 72 }}>
-      <div style={{ fontSize: 12, letterSpacing: 3, color: '#a855f7', textTransform: 'uppercase', marginBottom: 14, fontWeight: 600 }}>{label}</div>
-      <h2 style={{ fontSize: 'clamp(32px,5vw,52px)', fontWeight: 800, margin: 0, letterSpacing: -1 }}>
+    <div className="text-center mb-16">
+      <div className="text-xs tracking-[0.2em] text-purple-500 uppercase mb-3 font-semibold">{label}</div>
+      <h2 className="text-[clamp(32px,5vw,52px)] font-extrabold m-0 tracking-tight">
         {title}{' '}
-        <span style={{ background: 'linear-gradient(135deg,#6366f1,#a855f7)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>{highlight}</span>
+        <span className="bg-gradient-to-br from-indigo-500 to-purple-500 bg-clip-text text-transparent">{highlight}</span>
       </h2>
-      <div style={{ width: 60, height: 3, background: 'linear-gradient(90deg,#6366f1,#a855f7)', margin: '20px auto 0', borderRadius: 2 }} />
+      <div className="w-16 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto mt-5 rounded-full" />
     </div>
   );
 }
 
 export default function Projects() {
-  const [hovered, setHovered] = useState(null);
   const [preview, setPreview] = useState(null);
 
   return (
     <>
-      <section id="projects" style={{ padding: '120px 40px', maxWidth: 1100, margin: '0 auto' }}>
+      <section id="projects" className="py-32 px-10 max-w-6xl mx-auto">
         <AnimSection>
           <SectionHeader label="Portfolio" title="Featured" highlight="Projects" />
         </AnimSection>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))', gap: 28 }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
           {PROJECTS.map((project, i) => (
-            <AnimSection key={project.title} delay={i * 0.12}>
+            <AnimSection key={project.title} delay={i * 0.1}>
               <div
                 data-hover
-                onMouseEnter={() => setHovered(i)}
-                onMouseLeave={() => setHovered(null)}
-                style={{
-                  background: hovered === i ? 'rgba(168,85,247,0.08)' : 'rgba(255,255,255,0.03)',
-                  border: `1px solid ${hovered === i ? 'rgba(168,85,247,0.4)' : 'rgba(255,255,255,0.07)'}`,
-                  borderRadius: 20, padding: 32,
-                  transition: 'all 0.3s ease',
-                  transform: hovered === i ? 'translateY(-6px)' : 'none',
-                  boxShadow: hovered === i ? '0 20px 60px rgba(168,85,247,0.15)' : 'none',
-                  display: 'flex', flexDirection: 'column', gap: 18,
-                }}
+                className="group h-full flex flex-col bg-white/[0.03] border border-white/[0.07] rounded-3xl p-8 transition-all duration-500 hover:-translate-y-2 hover:bg-purple-500/10 hover:border-purple-500/40 hover:shadow-[0_20px_60px_rgba(168,85,247,0.15)]"
               >
-                <div style={{ fontSize: 48, lineHeight: 1, paddingTop: 12 }}>{project.emoji}</div>
-                <div>
-                  <h3 style={{ margin: '0 0 10px', fontSize: 20, fontWeight: 700 }}>{project.title}</h3>
-                  <p style={{ margin: 0, fontSize: 14, color: 'rgba(255,255,255,0.5)', lineHeight: 1.7 }}>{project.desc}</p>
+                <div className="text-5xl leading-none pt-2 mb-6 transform group-hover:scale-110 transition-transform duration-300 origin-left">{project.emoji}</div>
+                <div className="mb-6 flex-1">
+                  <h3 className="text-xl font-bold mb-3">{project.title}</h3>
+                  <p className="text-sm text-white/50 leading-relaxed m-0 group-hover:text-white/70 transition-colors duration-300">{project.desc}</p>
                 </div>
-                <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                
+                <div className="flex gap-2 flex-wrap mb-8">
                   {project.tags.map((tag) => (
-                    <span key={tag} style={{ fontSize: 11, fontWeight: 600, padding: '4px 10px', borderRadius: 100, background: 'rgba(168,85,247,0.12)', color: '#c084fc', border: '1px solid rgba(168,85,247,0.2)' }}>{tag}</span>
+                    <span key={tag} className="text-[11px] font-semibold px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/20">
+                      {tag}
+                    </span>
                   ))}
                 </div>
 
                 {/* Action buttons */}
-                <div style={{ display: 'flex', gap: 10, marginTop: 'auto' }}>
+                <div className="flex gap-3 mt-auto">
                   <button
                     data-hover
                     onClick={() => setPreview(project)}
-                    style={{
-                      flex: 1, padding: '10px 0', borderRadius: 10,
-                      background: hovered === i ? 'rgba(168,85,247,0.15)' : 'rgba(255,255,255,0.04)',
-                      border: `1px solid ${hovered === i ? 'rgba(168,85,247,0.4)' : 'rgba(255,255,255,0.1)'}`,
-                      color: hovered === i ? '#c084fc' : 'rgba(255,255,255,0.5)',
-                      fontSize: 13, fontWeight: 600, cursor: 'pointer',
-                      transition: 'all 0.2s', fontFamily: 'inherit',
-                    }}
-                    onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(168,85,247,0.2)'; e.currentTarget.style.color = '#c084fc'; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.background = hovered === i ? 'rgba(168,85,247,0.15)' : 'rgba(255,255,255,0.04)'; e.currentTarget.style.color = hovered === i ? '#c084fc' : 'rgba(255,255,255,0.5)'; }}
+                    className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white/60 text-sm font-semibold transition-all duration-300 hover:bg-purple-500/20 hover:border-purple-500/50 hover:text-purple-400 group/btn"
                   >
-                    👁 Preview
+                    <Eye size={16} className="group-hover/btn:scale-110 transition-transform duration-300" /> Preview
                   </button>
                   <a
                     href={project.link}
                     target="_blank"
                     rel="noreferrer"
                     data-hover
-                    style={{
-                      flex: 1, padding: '10px 0', borderRadius: 10,
-                      background: 'linear-gradient(135deg,#6366f1,#a855f7)',
-                      color: 'white', fontSize: 13, fontWeight: 600,
-                      textDecoration: 'none', textAlign: 'center',
-                      transition: 'opacity 0.2s',
-                      boxShadow: hovered === i ? '0 0 20px rgba(168,85,247,0.4)' : 'none',
-                    }}
-                    onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.85')}
-                    onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+                    className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 text-white text-sm font-semibold decoration-transparent transition-all duration-300 hover:opacity-90 group-hover:shadow-[0_0_20px_rgba(168,85,247,0.3)] hover:scale-[1.02]"
                   >
-                    ↗ Visit Site
+                    Visit <ExternalLink size={16} />
                   </a>
                 </div>
               </div>
@@ -247,12 +162,6 @@ export default function Projects() {
 
       {/* Modal */}
       {preview && <PreviewModal project={preview} onClose={() => setPreview(null)} />}
-
-      <style>{`
-        @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
-        @keyframes slideUp { from { transform: translateY(30px); opacity: 0 } to { transform: translateY(0); opacity: 1 } }
-        @keyframes spin { to { transform: rotate(360deg) } }
-      `}</style>
     </>
   );
 }
