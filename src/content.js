@@ -29,6 +29,41 @@ export const EXPERIENCE = [
 
 export const PROJECTS = [
   {
+    title: 'Seren Place Website',
+    desc: 'A premium home healthcare agency website providing compassionate and family-centered care services, including specialized senior and dementia care.',
+    tags: ['React', 'Next.js', 'Tailwind CSS'],
+    link: 'https://seren-place.vercel.app/',
+    emoji: '💙',
+  },
+  {
+    title: 'Oke Oluwaseun Website',
+    desc: 'A professional personal branding website for a leadership and purpose-driven consultant, featuring a framework for transformational impact.',
+    tags: ['React', 'Tailwind CSS', 'Vercel'],
+    link: 'https://okeoluwaseun.vercel.app/',
+    emoji: '🚀',
+  },
+  {
+    title: 'Brawndy Chambers',
+    desc: 'A sophisticated law firm website offering expert legal solutions and strategic representation for individuals and corporations across various practice areas.',
+    tags: ['Next.js', 'Tailwind CSS', 'Vercel'],
+    link: 'https://brawndy-chambers.vercel.app/',
+    emoji: '⚖️',
+  },
+  {
+    title: 'Inventory App',
+    desc: 'A professional inventory management application designed for businesses, featuring a sleek dashboard and real-time tracking capabilities.',
+    tags: ['React', 'Tailwind CSS', 'Vercel'],
+    link: 'https://inventorypro-omega.vercel.app',
+    emoji: '📦',
+  },
+  {
+    title: 'Crafting the Mind S&B App',
+    desc: 'An intuitive spending tracker and budgeting system designed to help users understand their spending behavior and achieve financial clarity.',
+    tags: ['React', 'Tailwind CSS', 'Vercel'],
+    link: 'https://spending-tracker-ten-lovat.vercel.app/',
+    emoji: '💰',
+  },
+  {
     title: 'Lagos Business School',
     desc: 'Official website for Lagos Business School, emphasizing institutional excellence through thoughtful design and seamless user experience.',
     tags: ['PHP', 'WordPress', 'CSS'],
@@ -77,17 +112,10 @@ export const PROJECTS = [
     link: 'https://wisdommixacademy.vercel.app/',
     emoji: '🏛️',
   },
-  {
-    title: 'Nuhra X Website',
-    desc: 'Digital platform for a web agency specialized in building specialized solutions',
-    tags: ['Tailwind CSS', 'NextJS', 'TypeScript'],
-    link: 'https://nuhrax.vercel.app/',
-    emoji: '🏛️',
-  },
 ];
 
 export const SKILLS = {
-  Languages: ['PHP', 'Python', 'JavaScript', 'HTML5', 'CSS3', 'MySQL'],
+  Languages: ['PHP', 'Python', 'JavaScript', 'NextJS', 'React JS' ,'HTML5', 'CSS3', 'MySQL'],
   'Tools & Platforms': ['WordPress', 'Git'],
 };
 
@@ -110,6 +138,7 @@ export const STATS = [
 
 export const TYPING_WORDS = [
   'Web Developer',
+  'Software Developer',
   'PHP Specialist',
   'WordPress Expert',
   'Problem Solver',
