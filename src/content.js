@@ -115,19 +115,40 @@ export const PROJECTS = [
 ];
 
 export const SKILLS = {
-  Languages: ['PHP', 'Python', 'JavaScript', 'NextJS', 'React JS' ,'HTML5', 'CSS3', 'MySQL'],
-  'Tools & Platforms': ['WordPress', 'Git'],
+  Frontend: ['React JS', 'NextJS', 'TypeScript', 'Tailwind CSS', 'JavaScript', 'HTML5', 'CSS3'],
+  Backend: ['PHP', 'Python', 'Node.js', 'MySQL', 'Firebase'],
+  CMS: ['WordPress', 'Elementor', 'WooCommerce'],
+  Tools: ['Git', 'Vercel', 'Netlify', 'Postman', 'Figma'],
 };
 
 export const SKILL_ICONS = {
-  PHP: '🐘',
-  Python: '🐍',
+  // Frontend
+  'React JS': '⚛️',
+  NextJS: '▲',
+  TypeScript: '🟦',
+  'Tailwind CSS': '🎨',
   JavaScript: '⚡',
   HTML5: '🌐',
   CSS3: '🎨',
+  
+  // Backend
+  PHP: '🐘',
+  Python: '🐍',
+  'Node.js': '🟢',
   MySQL: '🗄️',
+  Firebase: '🔥',
+  
+  // CMS
   WordPress: '📝',
+  Elementor: '🏗️',
+  WooCommerce: '🛒',
+  
+  // Tools
   Git: '🔀',
+  Vercel: '🚀',
+  Netlify: '☁️',
+  Postman: '📮',
+  Figma: '🎨',
 };
 
 export const STATS = [
